@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car CRUD Application</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body class="bg-pink-to-r bg-pink-500  text-white min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="bg-pink-800 w-64 min-h-screen p-6">
+        <h2 class="text-2xl font-bold mb-8">Car CRUD Navigation</h2>
+        <nav class="space-y-4">
+            <button onclick="fetchMostPopularMake()" class="block bg-pink-500 hover:bg-pink-600 text-white p-3 rounded w-full text-left">
+                Show Most Popular
+            </button>
+            <button onclick="toggleForm('add-car-form')" class="block bg-pink-500 hover:bg-pink-600 text-white p-3 rounded w-full text-left">
+                Add Car
+            </button>
+            <button onclick="toggleForm('update-car-form')" class="block bg-pink-500 hover:bg-pink-600 text-white p-3 rounded w-full text-left">
+                Update Car
+            </button>
+            <button onclick="toggleForm('delete-car-form')" class="block bg-pink-500 hover:bg-pink-600 text-white p-3 rounded w-full text-left">
+                Delete Car
+            </button>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-10">
+        <div class="bg-pink-400 text-gray-900 rounded-lg shadow-lg p-8">
+            <h1 class="text-4xl font-bold mb-6 text-center">Car CRUD Application</h1>
+
+            <!-- Response/Result Field -->
+            <div id="result" class="bg-pink-200 text-pink-900 p-4 rounded-lg mt-4 text-lg font-semibold text-center">
+                <p>No results yet.</p>
+            </div>
+
+            <!-- Forms for CRUD Operations -->
+            <div id="forms" class="mt-6">
+                <!-- Add Car Form -->
+                <div id="add-car-form" class="hidden">
+                    <h2 class="text-2xl font-bold mb-4">Add a New Car</h2>
+                    <div class="mb-4">
+                        <label for="make" class="block text-sm font-semibold">Make</label>
+                        <input id="make" type="text" placeholder="Make" class="p-3 border rounded w-full text-gray-900">
+                    </div>
+                    <div class="mb-4">
+                        <label for="model" class="block text-sm font-semibold">Model</label>
+                        <input id="model" type="text" placeholder="Model" class="p-3 border rounded w-full text-gray-900">
+                    </div>
+                    <div class="mb-4">
+                        <label for="color" class="block text-sm font-semibold">Color</label>
+                        <input id="color" type="text" placeholder="Color" class="p-3 border rounded w-full text-gray-900">
+                    </div>
+                    <div class="mb-4">
+                        <label for="reg_number" class="block text-sm font-semibold">Registration Number</label>
+                        <input id="reg_number" type="text" placeholder="Registration Number" class="p-3 border rounded w-full text-gray-900">
+                    </div>
+                    <button onclick="addCar()" class="bg-pink-500 hover:bg-pink-600 text-white p-3 rounded w-full">
+                        Submit
+                    </button>
+                </div>
+
+                <!-- Update Car Form -->
+                <div id="update-car-form" class="hidden">
+                    <h2 class="text-2xl font-bold mb-4">Update a Car</h2>
+                    <div class="mb-4">
+                        <label for="update_reg_number" class="block text-sm font-semibold">Registration Number</label>
+                        <input id="update_reg_number" type="text" placeholder="Registration Number" class="p-3 border rounded w-full text-gray-900">
+                    </div>
+                    <div class="mb-4">
+                        <label for="update_make" class="block text-sm font-semibold">New Make</label>
+                        <input id="update_make" type="text" placeholder="New Make" class="p-3 border rounded w-full text-gray-900">
+                    </div>
+                    <div class="mb-4">
+                        <label for="update_model" class="block text-sm font-semibold">New Model</label>
+                        <input id="update_model" type="text" placeholder="New Model" class="p-3 border rounded w-full text-gray-900">
+                    </div>
+                    <div class="mb-4">
+                        <label for="update_color" class="block text-sm font-semibold">New Color</label>
+                        <input id="update_color" type="text" placeholder="New Color" class="p-3 border rounded w-full text-gray-900">
+                    </div>
+                    <button onclick="updateCar()" class="bg-pink-500 hover:bg-pink-600 text-white p-3 rounded w-full">
+                        Update
+                    </button>
+                </div>
+
+                <!-- Delete Car Form -->
+                <div id="delete-car-form" class="hidden">
+                    <h2 class="text-2xl font-bold mb-4">Delete a Car</h2>
+                    <div class="mb-4">
+                        <label for="delete_reg_number" class="block text-sm font-semibold">Registration Number</label>
+                        <input id="delete_reg_number" type="text" placeholder="Registration Number" class="p-3 border rounded w-full text-gray-900">
+                    </div>
+                    <button onclick="deleteCar()" class="bg-pink-500 hover:bg-pink-600 text-white p-3 rounded w-full">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+
+    <script>
+        // Function to toggle form visibility
+        function toggleForm(formId) {
+            document.getElementById('add-car-form').classList.add('hidden');
+            document.getElementById('update-car-form').classList.add('hidden');
+            document.getElementById('delete-car-form').classList.add('hidden');
+            document.getElementById(formId).classList.remove('hidden');
+        }
+    </script>
+</body>
+
+</html>
